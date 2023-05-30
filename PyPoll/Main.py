@@ -40,22 +40,41 @@ with open (electiondatacsv, 'r') as csv_file:
 
                 winner = row["Candidate"]
 
-candidate = row["Candidate"]
+                candidate = row["Candidate"]
+                percent = (canvotes / totalnumbervotes)*100
+                out = f"{candidate}: {percent}% {canvotes}"
+                
 
+
+#print the analysis to the terminal                
 print("Election Results")
 print("-------------------------")
 print("Total Votes " + str(totalnumbervotes))
 print("-------------------------")
 
+print (out)
 
-     
-percent = (canvotes / totalnumbervotes)*100
-
-out = f"{candidate}: {percent}% {canvotes}"
-
-
-print(out)
-
+print("-------------------------")
 
 print ("Winner: " + winner)
+
+
+#export a text file with the results
+text_path = ('/Users/SOSA/Documents/github/python-challenge/pypoll/analysis/output.txt')
+
+
+with open(text_path, 'w') as file:
+     
+    file.write ("Election Results")
+    file.write("-------------------------")
+    file.write("Total Votes " + str(totalnumbervotes))
+    file.write("-------------------------")
+
+    file.write (out)
+
+    file.write("-------------------------")
+
+    file.write ("Winner: " + winner)
+
+
 
